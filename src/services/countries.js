@@ -3,11 +3,16 @@ export const defaultCountries = async () =>{
         const response = await fetch('https://restcountries.com/v3.1/all?fields=name,population,region,capital,cca3,flags')
         const json = await response.json()
         const allResults = json
-        const defaultNames = ['germany', 'united states', 'brazil', 'iceland', 'afghanistan', 'åland islands', 'albania', 'algeria']
+        const randomResults = allResults.sort(()=>Math.random()-0.5);
+        const mappedResults = randomResults.slice(0,20)
+        //Default names
+        // const defaultNames = ['mexico', 'venezuela', 'russia', 'ukraine', 'australia', 'hong kong',  'antarctica','heard island and mcdonald islands']
         
-        const mappedResults = allResults.filter((country)=>
-            defaultNames.includes(country?.name?.common.toLowerCase())
-        )
+        // const mappedResults = allResults.filter((country)=>
+        //     defaultNames.includes(country?.name?.common.toLowerCase())
+        // )
+
+
         
         return mappedResults?.map(x=>({
             id: x?.cca3,
