@@ -3,7 +3,7 @@ import { useCountries } from './hooks/useCountries';
 import { Countries } from './components/Countries';
 import { useSearch } from './hooks/useSearch';
 import debounce from 'just-debounce-it';
-import { useState,useCallback, useEffect } from 'react';
+import { useState,useCallback, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import {ReactComponent as IconSearch} from './assets/magnifying-glass-solid.svg'
 import Dropdown from './components/Dropdown';
@@ -18,10 +18,11 @@ function App() {
   const themeSelection = localStorage.getItem('darkmode') ? JSON.parse(localStorage.getItem('darkmode')) : false
 
   const { search, updateSearch, error } = useSearch()
-  const { countries, loading ,getCountries, error2 } = useCountries({search})
+  const { countries, loading ,getCountries, getDefault, error2 } = useCountries({search})
   const [darkMode, setDarkMode]= useState(themeSelection)
   const [ filteredBy, setFilteredBy ] = useState(null)
-  
+  const firstTime = useRef(true)
+
   const borderColor = darkMode? 'hsl(0, 0%, 58%)': 'hsl(200, 15%, 80%)'
   const bodyColor = darkMode? 'hsl(207, 26%, 17%)': 'hsl(0, 0%, 98%)'
   const elementsColor = darkMode? 'hsl(209, 23%, 22%)': 'hsl(0, 0%, 100%)'
@@ -55,6 +56,12 @@ function App() {
   useEffect(()=>{
     localStorage.setItem('darkmode', darkMode.toString())
   }, [darkMode])
+
+  useEffect(()=>{
+    if(firstTime.current){    
+      getDefault()
+    }
+  },[])
 
   return (
     <>

@@ -43,7 +43,7 @@ function NoCountriesResult() {
     )
 }
 
-export function Countries({countries, filteredBy}) {
+export function Countries({ countries, filteredBy}) {
     const hasCountries = countries?.length>0
     return (
             hasCountries ? <ListOfCountries countries={countries} filteredBy={filteredBy}/>

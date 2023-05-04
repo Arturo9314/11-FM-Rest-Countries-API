@@ -1,3 +1,28 @@
+export const defaultCountries = async () =>{    
+    try{
+        const response = await fetch('https://restcountries.com/v3.1/all?fields=name,population,region,capital,cca3,flags')
+        const json = await response.json()
+        const allResults = json
+        const defaultNames = ['germany', 'united states', 'brazil', 'iceland', 'afghanistan', 'åland islands', 'albania', 'algeria']
+        
+        const mappedResults = allResults.filter((country)=>
+            defaultNames.includes(country?.name?.common.toLowerCase())
+        )
+        
+        return mappedResults?.map(x=>({
+            id: x?.cca3,
+            flag: x?.flags.svg,
+            flagAlt: x?.flags?.alt ? x?.flags.alt : `Flag of ${x?.name.common}`,
+            name: x?.name.common,
+            population: x?.population,
+            region: x?.region,
+            capital: x?.capital.length === 0 ? null : x?.capital
+        }))
+    } catch (e) {
+        throw new Error('Error searching a countries...')
+    }
+}
+
 export const searchCountries = async ({search}) =>{    
     if(search==='') return null
     try {

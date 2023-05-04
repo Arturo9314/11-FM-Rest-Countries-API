@@ -1,4 +1,4 @@
-import { searchByCode, searchCountries, searchDetails } from '../services/countries';
+import { defaultCountries, searchByCode, searchCountries, searchDetails } from '../services/countries';
 import { useRef, useState, useCallback } from 'react';
 
 export function useCountries({search}){
@@ -21,7 +21,21 @@ export function useCountries({search}){
       setLoading(false)
     }
   },[])
-  return { countries, loading ,getCountries, error2 }
+
+  const getDefault = useCallback(async()=>{
+    try {
+      setLoading(true)
+      setError(null)
+      const newCountries = await defaultCountries()
+      setCountries(newCountries)
+    } catch (e) {
+      setError(e.message)
+    }finally{
+      setLoading(false)
+    }
+  },[])
+
+  return { countries, loading ,getCountries, getDefault, error2 }
 }
 
 export function useDetails({name}) {
