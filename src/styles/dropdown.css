@@ -1,0 +1,74 @@
+.split-button{
+    display: flex;
+    justify-content:space-between;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    caret-color: transparent;
+    background-color: var(--elements-color);
+    transition: 0.4s;
+    width: 210px;
+}
+
+.split-button button{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 0;height: 42px;
+    background: transparent;
+    transition: 0.4s;
+}
+
+.split-button button svg{
+    width: 20px;
+    animation:rotate-horizontal-center 0.4s
+}
+
+.split-button > button:nth-child(1){
+    padding: 0 24px;
+    color: var(--text-color);
+    transition: 0.4s;
+}
+
+.split-button > button:nth-child(2){
+    width: 50px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: var(--border-color);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    z-index: 1;
+    gap: 8px;
+    background-color: var(--elements-color);
+    width: 100%;
+    translate: -10px 0;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 8px;
+    transition: 0.4s;  
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+}
+
+.menu > button{
+    color: var(--text-color);
+    padding: 4px 18px;
+    transition: background-color 0.5s ease-out;
+    transition: color 0.4s;
+}
+.menu > button:hover{
+    background-color: var(--border-color);
+}
+
+@keyframes rotate-horizontal-center{0%{transform:rotateX(0)}100%{transform:rotateX(-360deg)}}

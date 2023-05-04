@@ -1,0 +1,16 @@
+#flag{
+    display: flex;
+    justify-content: center;
+    max-width: 560px;
+    max-height: 400px;
+    min-width: 320px;
+    transition: box-shadow .1s, transform .01s;
+}
+#flag:hover{
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
+}
+
+#details-flag{
+    object-fit: cover;
+    width: 100%;
+}

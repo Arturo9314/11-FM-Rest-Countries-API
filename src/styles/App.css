@@ -1,0 +1,215 @@
+#root{
+    width: 100%;
+    min-height: 100vh;
+    transition: 0.4s;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 375px;
+    padding: 25px 80px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+    z-index: 10;
+    background-color: var(--elements-color);
+    color: var(--text-color);
+}
+
+h1{
+    font-size: 24px;
+    transition: 0.4s;
+}
+
+.page{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 120px 80px;
+    min-height: 100vh;
+    gap: 32px;
+    transition: 0.4s;
+    caret-color: transparent;
+    min-width: 375px;
+}
+
+/* 
+    Error and loading
+*/
+.noresultsHeading{
+    color: var(--text-color);
+    font-size: 42px;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.noresults{
+    color: var(--text-color);
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    transition: 0.4s;
+}
+
+.loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* Input and filter button */
+#homeheader{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 5px;
+    width: 100%;
+    max-height: 42px;
+    justify-items: end;
+}
+#homeheader>form:nth-child(1){
+    justify-self: start;
+}
+
+form{
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+}
+
+
+.form input{
+    padding: 10px 60px;
+    background-color: var(--elements-color);
+    color: var(--text-color);
+    max-width: 480px;
+    max-height: 42px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s;
+    caret-color: var(--text-color);
+}
+
+.form > #inputIcon{
+    width: 20px;
+    position: absolute;
+    bottom: 25%;
+    left: calc(10% - 15px);
+    fill: var(--input-color);
+}
+
+#inputSearch:hover + #inputIcon{
+    animation:shake-left-right 0.8s linear both
+}
+
+.form input:focus{
+    outline: none; 
+    border: 2px solid var(--border-color);
+}
+ /* Error mesage */
+.form>p{
+    position: absolute;
+    top: 47.5px;
+    left: 45px;
+    font-size: 14px;
+}
+
+/* List of countries home page */
+
+.countries{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    justify-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    gap: 32px;
+}
+
+.country{
+    text-align: left;
+    width: 265px;
+    border-radius: 10px 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.4s;
+    background-color: var(--elements-color);
+}
+a{
+    text-decoration: none;
+}
+.country:hover, #inputSearch:hover, .split-button:hover, #back-link:hover, .toggle:hover{
+    animation:shadow-drop-center 0.4s linear both
+}
+
+.country-img{
+    width: 264px;
+    height: 160px;
+    display: flex;
+    border: none;
+}
+
+.country-img img{
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.country-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--text-color);
+    padding: 25px;
+    gap: 5px;
+    letter-spacing: 0.25px;
+    transition: 0.4s;
+}
+.bold{
+    font-weight: 600;
+}
+.country-info > h3{
+    font-weight: 800;
+}
+.country-info p, .country-info p >span {
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 699px) {
+    .page{
+        padding: 120px 20px;
+    }
+    
+    #homeheader{
+        justify-items: center;
+        padding: 0 20px;
+    }
+    .form{
+        justify-content: center;
+        width: 100%;
+    }
+    .form input{
+        width: 100%;
+    }
+    #details-main > article > footer{
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 604px) {
+    .page>main{
+        margin-top: 30px;
+    }
+}
+@keyframes shadow-drop-center{0%{box-shadow:0 0 0 0 transparent}100%{box-shadow:0 0 20px 0 var(--border-color)}}
+@keyframes shake-left-right{0%,100%{transform:rotate(0deg);transform-origin:50% 50%}10%{transform:rotate(8deg)}20%,40%,60%{transform:rotate(-10deg)}30%,50%,70%{transform:rotate(10deg)}80%{transform:rotate(-8deg)}90%{transform:rotate(8deg)}}
