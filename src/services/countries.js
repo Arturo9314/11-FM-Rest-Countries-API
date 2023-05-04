@@ -11,8 +11,6 @@ export const defaultCountries = async () =>{
         // const mappedResults = allResults.filter((country)=>
         //     defaultNames.includes(country?.name?.common.toLowerCase())
         // )
-
-
         
         return mappedResults?.map(x=>({
             id: x?.cca3,
@@ -59,6 +57,7 @@ export const searchDetails = async ({name})=>{
         const response = await fetch(`https://restcountries.com/v3.1/name/${nameToFind}?fullText=true`)
         const json = await response.json()
         const results = json
+        
         const detailsObject = results[0]
         const currenciesArr = detailsObject?.currencies? 
             (Object.values(detailsObject?.currencies)).map((e)=>e.name):null
@@ -68,6 +67,7 @@ export const searchDetails = async ({name})=>{
         const native = detailsObject?.name?.nativeName ? Object.values(detailsObject?.name?.nativeName)[0]: null
         const nativeFullName = native ? native.common ? native.common: native.official ? native.official : null : null 
         const flagDescription =  detailsObject?.flags?.alt ? detailsObject?.flags?.alt : `Flag of ${detailsObject?.name.common}`
+        const topLD = detailsObject?.tld ? detailsObject?.tld[0] : null
         const mappedDetails = {
             id: detailsObject?.cca3,
             flag: detailsObject?.flags.svg,
@@ -78,11 +78,12 @@ export const searchDetails = async ({name})=>{
             region: detailsObject?.region,
             subRegion: detailsObject?.region,
             capital: detailsCapital,
-            topLevelDomain: detailsObject?.tld[0],
+            topLevelDomain: topLD,
             currencies: currenciesArr,
             languages: languagesArr,
             borderCountries: detailsObject.borders
         }
+        
         return mappedDetails
     }catch(e){
         throw new Error(e)
