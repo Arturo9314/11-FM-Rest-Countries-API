@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename='https://arturo9314.github.io/11-FM-Rest-Countries-API/'>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
