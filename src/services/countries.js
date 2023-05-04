@@ -5,8 +5,9 @@ export const searchCountries = async ({search}) =>{
         const json = await response.json()
         const allResults = json
         const mappedResults = allResults.filter((country)=>
-        country?.name?.common.toLowerCase()?.includes(search.toLowerCase())
+            country?.name?.common.toLowerCase()?.includes(search.toLowerCase())
         )
+        
         return mappedResults?.map(x=>({
             id: x?.cca3,
             flag: x?.flags.svg,
@@ -14,7 +15,7 @@ export const searchCountries = async ({search}) =>{
             name: x?.name.common,
             population: x?.population,
             region: x?.region,
-            capital: x?.capital
+            capital: x?.capital.length === 0 ? null : x?.capital
         }))
     } catch (e) {
         throw new Error('Error searching a countries...')

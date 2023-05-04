@@ -19,8 +19,14 @@ function ListOfCountries({countries, filteredBy}) {
                                 <article className="country-info">
                                     <h3 >{country?.name}</h3>
                                     <p ><span className="bold">Population:</span> {country?.population.toLocaleString('en-US')}</p>
-                                    <p ><span className="bold">Region:</span> {country?.region}</p>
-                                    <p ><span className="bold">Capital:</span> {country?.capital}</p>
+                                    {country?.region?
+                                        <p ><span className="bold">Region:</span> {country?.region}</p>
+                                    : ''
+                                    }
+                                    {country?.capital ?
+                                        <p ><span className="bold">Capital:</span> {country?.capital}</p>
+                                    :''
+                                    }
                                 </article>
                             </NavLink>
                         </li>

@@ -3,9 +3,9 @@ import '../styles/dropdown.css'
 import { ReactComponent as ChevronDown } from '../assets/chevron-down-solid.svg';
 import { ReactComponent as ChevronUp } from '../assets/chevron-up-solid.svg';
 
-export default function Dropdown({onFiltered}) {
+export default function Dropdown({filteredBy, onFiltered}) {
     const [dropdown, setDropdown] = useState(false)
-    const [filter, setFilter]= useState('Filter by Region')
+    const [filter, setFilter]= useState(filteredBy)
     const selectedButtonRef = useRef(null);
     
     const icon = dropdown? <ChevronUp/> : <ChevronDown/>
@@ -28,10 +28,21 @@ export default function Dropdown({onFiltered}) {
         toogleDropdown()
     }
 
+    const handleAll = (event)=>{
+        const choice = event.target.textContent
+        if(choice === selectedButtonRef.current){
+            return
+        }
+        toogleDropdown()
+        setFilter(null)
+        selectedButtonRef.current = choice
+        onFiltered(null)
+    }
+
     return (
         <div className='split-button'>
             <button >
-                {filter}
+                {filter?filter: 'Filter by Region'}
             </button>
             <button id='dropIcon' onClick={toogleDropdown}>
                 {icon}
@@ -52,6 +63,12 @@ export default function Dropdown({onFiltered}) {
                 <button onClick={handleMenuButtonClicked}>
                     Oceania
                 </button>
+                {
+                    filter ?
+                    <button onClick={handleAll}>
+                        Show all
+                    </button> : ''
+                }
             </div>
         </div>
     )

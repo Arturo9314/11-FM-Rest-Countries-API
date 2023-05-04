@@ -8,18 +8,12 @@ import { DotWave } from '@uiball/loaders'
 import Error404 from "./Error404";
 import Flag from "./Flag";
 
-export function DetailsCountry({handleFiltered}) {
+export function DetailsCountry() {
     const {name} = useParams();
     const {details, loading, getDetails, errorDetails} = useDetails({name})
-    const nullFiltered = ()=>{
-        handleFiltered(null)
-    }
     const altImg = details?.flagAlt
     useEffect(()=>{
         getDetails({name})
-        return ()=>{
-            nullFiltered()
-        }
     },[name])
     return (
         <>

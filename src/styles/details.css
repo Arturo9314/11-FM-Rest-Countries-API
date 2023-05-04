@@ -101,7 +101,12 @@
     caret-color: transparent;
     border-radius: 4px;
     transition: 0.4s;
+    cursor: pointer;
 }
+.border-btn:hover{
+    animation:shadow-drop-center 0.1s linear both
+}
+
 .border-btn::-webkit-scrollbar{
     width: 0.5em;
 }

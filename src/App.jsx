@@ -72,7 +72,7 @@ function App() {
                 <IconSearch id='inputIcon'/>
                 {error? <p style={{color: 'red'}}>{error}</p>: error2?<p style={{color: 'red'}}>{error2}</p> : '' }
               </form>
-              <Dropdown onFiltered={handleFiltered}/>
+              <Dropdown filteredBy={filteredBy} onFiltered={handleFiltered}/>
             </header>
             <main id='main-home'>
               {
@@ -86,7 +86,7 @@ function App() {
           </>
         }/>
         <Route path='/country/:name' element={
-          <DetailsCountry handleFiltered={handleFiltered}/>
+          <DetailsCountry />
         }/>
       </Routes>
       </div>
